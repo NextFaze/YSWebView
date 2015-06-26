@@ -7,4 +7,19 @@
    <FileRef
       location = "group:Pods/Pods.xcodeproj">
    </FileRef>
+   <FileRef
+      location = "group:YSWebViewExample/YSWebViewExample.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:YSWebViewExample/Pods/Pods.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:LICENSE">
+   </FileRef>
+   <FileRef
+      location = "group:README.md">
+   </FileRef>
+   <FileRef
+      location = "group:YSWebView.podspec">
+   </FileRef>
 </Workspace>

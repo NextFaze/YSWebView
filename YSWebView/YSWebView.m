@@ -198,12 +198,12 @@
 
 YSWebViewNavigationType mapUIWebViewNavigationTypeToYSWebViewNavigationType(UIWebViewNavigationType navigationType) {
     switch (navigationType) {
-        case UIWebViewNavigationTypeLinkClicked: {return YSWebViewNavigationTypeLinkClicked; break;}
-        case UIWebViewNavigationTypeFormSubmitted: {return YSWebViewNavigationTypeFormSubmitted; break;}
-        case UIWebViewNavigationTypeBackForward: {return YSWebViewNavigationTypeBackForward; break;}
-        case UIWebViewNavigationTypeReload: {return YSWebViewNavigationTypeReload; break;}
-        case UIWebViewNavigationTypeFormResubmitted: {return YSWebViewNavigationTypeFormResubmitted; break;}
-        case UIWebViewNavigationTypeOther: {return YSWebViewNavigationTypeOther; break;}
+        case UIWebViewNavigationTypeLinkClicked:    {return YSWebViewNavigationTypeLinkClicked; break;}
+        case UIWebViewNavigationTypeFormSubmitted:  {return YSWebViewNavigationTypeFormSubmitted; break;}
+        case UIWebViewNavigationTypeBackForward:    {return YSWebViewNavigationTypeBackForward; break;}
+        case UIWebViewNavigationTypeReload:         {return YSWebViewNavigationTypeReload; break;}
+        case UIWebViewNavigationTypeFormResubmitted:{return YSWebViewNavigationTypeFormResubmitted; break;}
+        case UIWebViewNavigationTypeOther:          {return YSWebViewNavigationTypeOther; break;}
     }
 }
 

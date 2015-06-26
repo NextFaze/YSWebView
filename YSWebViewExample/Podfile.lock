@@ -1,0 +1,19 @@
+PODS:
+  - Masonry (0.6.1)
+  - YSWebView (1.0.0):
+    - YSWebView/Core (= 1.0.0)
+  - YSWebView/Core (1.0.0):
+    - Masonry
+
+DEPENDENCIES:
+  - YSWebView (from `../`)
+
+EXTERNAL SOURCES:
+  YSWebView:
+    :path: ../
+
+SPEC CHECKSUMS:
+  Masonry: 4972309f2f134de9dd312f4dc4a21359b50e6caa
+  YSWebView: 73a0b40582adf152c99eb2f682f953d21d13c51c
+
+COCOAPODS: 0.35.0

@@ -1,0 +1,8 @@
+xcodeproj 'YSWebViewExample'
+workspace '../YSWebView'
+
+target :YSWebViewExample do
+  platform :ios, '7.0'
+  link_with 'YSWebViewExample'
+  pod 'YSWebView', :path => '../'
+end
