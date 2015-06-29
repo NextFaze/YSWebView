@@ -49,7 +49,8 @@
         _webView = [[UIWebView alloc] initWithFrame:self.frame];
         _webView.delegate = self;
         _webView.suppressesIncrementalRendering = YES;
-        _webView.dataDetectorTypes = UIDataDetectorTypeAll ^ UIDataDetectorTypePhoneNumber;
+        _webView.dataDetectorTypes = UIDataDetectorTypeLink | UIDataDetectorTypeCalendarEvent | UIDataDetectorTypeAddress;
+        
         [self addSubview:_webView];
         [_webView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.edges.equalTo(self);
