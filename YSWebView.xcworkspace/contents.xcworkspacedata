@@ -14,6 +14,9 @@
       location = "group:YSWebViewExample/Pods/Pods.xcodeproj">
    </FileRef>
    <FileRef
+      location = "group:docs">
+   </FileRef>
+   <FileRef
       location = "group:LICENSE">
    </FileRef>
    <FileRef
