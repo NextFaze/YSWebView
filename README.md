@@ -5,7 +5,7 @@ YSWebView
 [![Pod Platform](http://img.shields.io/cocoapods/p/YSWebView.svg?style=flat)](http://cocoadocs.org/docsets/YSWebView/)
 [![Pod License](http://img.shields.io/cocoapods/l/YSWebView.svg?style=flat)](https://www.apache.org/licenses/LICENSE-2.0.html)
 
-YSWebView wraps a webview, UIWebView or WKWebView based on the OS availability.
+YSWebView wraps a webview, [UIWebView](https://developer.apple.com/library/ios/documentation/UIKit/Reference/UIWebView_Class/) or [WKWebView](https://developer.apple.com/library/ios/documentation/WebKit/Reference/WKWebView_Ref/) based on the OS availability.
 
 <p align="left" >
 <img src="docs/WKWebView.jpg" title="WKWebView" float=left width=169 hspace=40>
