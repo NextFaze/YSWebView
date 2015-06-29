@@ -1,6 +1,5 @@
 //
 //  YSWebView.h
-//  Webs
 //
 //  Created by Bogdan Hapca on 07/01/15.
 //  Copyright (c) 2015 Yardi. All rights reserved.
@@ -8,7 +7,6 @@
 
 @import UIKit;
 
-@class YSWebView;
 
 typedef NS_ENUM(NSInteger, YSWebViewNavigationType) {
     YSWebViewNavigationTypeLinkClicked,
@@ -19,12 +17,17 @@ typedef NS_ENUM(NSInteger, YSWebViewNavigationType) {
     YSWebViewNavigationTypeOther
 };
 
+
+@class YSWebView;
+
 @protocol YSWebViewDelegate <NSObject>
+
 @optional
 - (void)webViewDidStartLoad:(YSWebView *)webView;
 - (void)webViewDidFinishLoad:(YSWebView *)webView;
 - (void)webView:(YSWebView *)webView didFailLoadWithError:(NSError *)error;
 - (BOOL)webView:(YSWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(YSWebViewNavigationType)navigationType;
+
 @end
 
 

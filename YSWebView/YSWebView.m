@@ -1,6 +1,5 @@
 //
 //  YSWebView.m
-//  Webs
 //
 //  Created by Bogdan Hapca on 07/01/15.
 //  Copyright (c) 2015 Yardi. All rights reserved.
@@ -18,11 +17,14 @@
 
 
 @interface YSWebView () <UIWebViewDelegate, WKNavigationDelegate, UIAlertViewDelegate>
+
 @property (nonatomic, strong) UIWebView *webView;
 @property (nonatomic, strong) WKWebView *webViewWK;
 @property (nonatomic, strong) NSTimer *guardTimer;
 @property (nonatomic, strong) UIAlertView *callAlertView;
+
 @end
+
 
 @implementation YSWebView
 
