@@ -44,6 +44,13 @@ typedef void(^JavaScriptCompletionBlock)(NSString *result, NSError *error);
 @property (nonatomic, readonly, weak) UIScrollView *scrollView;
 
 /**
+ * Indicates whether the instances of YSWebView that are backed by WKWebView share the same process pool.
+ * That's needed for sharing the cookies and cache between those instances. The default value is YES.
+ * If you change this you must do so before calling any of the methods below.
+ */
+@property (nonatomic, assign) BOOL shareProcessPool;
+
+/**
  * Loads the web view with content returned by an url request
  * @params request - the url request
  */

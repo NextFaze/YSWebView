@@ -44,6 +44,16 @@
     return self;
 }
 
++ (WKProcessPool*)processPool {
+    static WKProcessPool *pool;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        pool = [[WKProcessPool alloc] init];
+    });
+    
+    return pool;
+}
+
 - (void)doInit {
     if (NSClassFromString(@"WKWebView") == nil) {
         _webView = [[UIWebView alloc] initWithFrame:self.frame];
@@ -56,14 +66,26 @@
             make.edges.equalTo(self);
         }];
     } else {
+        _shareProcessPool = YES;
+        [self configureWKWebView];
+    }
+}
+
+- (void)configureWKWebView {
+    if (_shareProcessPool) {
+        WKWebViewConfiguration *config = [[WKWebViewConfiguration alloc] init];
+        config.processPool = [[self class] processPool];
+        _webViewWK = [[WKWebView alloc] initWithFrame:self.frame configuration:config];
+    } else {
         _webViewWK = [[WKWebView alloc] initWithFrame:self.frame];
+    }
+    
         _webViewWK.navigationDelegate = self;
         [self addSubview:_webViewWK];
         [_webViewWK mas_makeConstraints:^(MASConstraintMaker *make) {
             make.edges.equalTo(self);
         }];
     }
-}
 
 - (void)dealloc {
     DESTROY_UIWEBVIEW_ARC(_webView);
@@ -176,6 +198,14 @@
 - (void)setBackgroundColor:(UIColor *)backgroundColor {
     [self.webView setBackgroundColor:backgroundColor];
     [self.webViewWK setBackgroundColor:backgroundColor];
+}
+
+- (void)setShareProcessPool:(BOOL)shareProcessPool {
+    if (_shareProcessPool != shareProcessPool) {
+        _shareProcessPool = shareProcessPool;
+        [_webViewWK removeFromSuperview];
+        [self configureWKWebView];
+    }
 }
 
 #pragma mark UIWebViewDelegate methods
