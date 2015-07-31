@@ -269,6 +269,14 @@ YSWebViewNavigationType mapUIWebViewNavigationTypeToYSWebViewNavigationType(UIWe
             [self openTelUrl:url];
         }
         decisionHandler(WKNavigationActionPolicyCancel);
+        
+    } else if ([url.scheme isEqualToString:@"mailto"]) {
+        UIApplication *sharedApplication = [UIApplication sharedApplication];
+        if (![sharedApplication canOpenURL:url] || ![sharedApplication openURL:url]) {
+            [self showCantOpenURLAlert];
+        }
+        decisionHandler(WKNavigationActionPolicyCancel);
+        
     } else if ([self.delegate respondsToSelector:@selector(webView:shouldStartLoadWithRequest:navigationType:)]) {
         if ([self.delegate webView:self shouldStartLoadWithRequest:navigationAction.request navigationType:mapWKNavigationTypeToYSWebViewNavigationType(navigationAction.navigationType)]) {
             decisionHandler(WKNavigationActionPolicyAllow);
@@ -289,6 +297,11 @@ YSWebViewNavigationType mapUIWebViewNavigationTypeToYSWebViewNavigationType(UIWe
 
 - (void)showCantCallAlert {
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:@"Your device can't make phone calls." delegate:nil cancelButtonTitle:@"Continue" otherButtonTitles:nil, nil];
+    [alertView show];
+}
+
+- (void)showCantOpenURLAlert {
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:@"Can't open URL" delegate:nil cancelButtonTitle:@"Continue" otherButtonTitles:nil, nil];
     [alertView show];
 }
 
