@@ -11,7 +11,7 @@ before_install:
     - pod repo update --silent
 
 script:
-    - pod lib lint
     - pod install
+    - pod lib lint
     - pod install --project-directory=YSWebViewExample
     - xcodebuild -workspace YSWebView.xcworkspace -scheme 'YSWebViewExample' -sdk iphonesimulator clean build | xcpretty -c && exit ${PIPESTATUS[0]}
