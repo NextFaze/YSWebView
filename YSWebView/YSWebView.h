@@ -84,7 +84,9 @@ typedef void(^JavaScriptCompletionBlock)(NSString *result, NSError *error);
  */
 - (void)evaluateJavaScriptFromString:(NSString *)script completionBlock:(JavaScriptCompletionBlock)block;
 
-
+/**
+ * Stops the loading of web view
+ */
 - (void)stopLoading;
 
 @end
