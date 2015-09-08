@@ -20,6 +20,7 @@
 
 @property (nonatomic, strong) UIWebView *webView;
 @property (nonatomic, strong) WKWebView *webViewWK;
+@property (nonatomic, strong) WKWebViewConfiguration *webViewWKConfig;
 @property (nonatomic, strong) NSTimer *guardTimer;
 @property (nonatomic, strong) UIAlertView *callAlertView;
 
@@ -59,6 +60,7 @@
         _webView = [[UIWebView alloc] initWithFrame:self.frame];
         _webView.delegate = self;
         _webView.suppressesIncrementalRendering = YES;
+        _webView.scalesPageToFit = YES;
         _webView.dataDetectorTypes = UIDataDetectorTypeLink | UIDataDetectorTypeCalendarEvent | UIDataDetectorTypeAddress;
         
         [self addSubview:_webView];
@@ -75,7 +77,10 @@
     if (_shareProcessPool) {
         WKWebViewConfiguration *config = [[WKWebViewConfiguration alloc] init];
         config.processPool = [[self class] processPool];
+        config.allowsInlineMediaPlayback = YES;
         _webViewWK = [[WKWebView alloc] initWithFrame:self.frame configuration:config];
+        
+        self.webViewWKConfig = config;
     } else {
         _webViewWK = [[WKWebView alloc] initWithFrame:self.frame];
     }
@@ -138,6 +143,59 @@
     });
     
     [self loadHTMLString:string baseURL:baseURL];
+}
+
+- (void)reload
+{
+    [self.webView reload];
+    [self.webViewWK reload];
+}
+
+- (void)goBack
+{
+    [self.webView goBack];
+    [self.webViewWK goBack];
+}
+
+- (void)goForward
+{
+    [self.webView goForward];
+    [self.webViewWK goForward];
+}
+
+- (BOOL)canGoBack
+{
+    return [self.webView canGoBack] || [self.webViewWK canGoBack];
+}
+
+- (BOOL)canGoForward
+{
+    return [self.webView canGoForward] || [self.webViewWK canGoForward];
+}
+
+- (BOOL)isLoading
+{
+    return [self.webView isLoading] || [self.webViewWK isLoading];
+}
+
+- (NSString *)pageTitle
+{
+    NSString *pageTitle = [self.webViewWK title];
+    
+    if (pageTitle == nil) {
+        pageTitle = [self.webView stringByEvaluatingJavaScriptFromString:@"document.title"];
+    }
+    
+    return pageTitle;
+}
+
+- (NSURLRequest *)request
+{
+    if ([self.webViewWK URL]) {
+        return [NSURLRequest requestWithURL:[self.webViewWK URL]];
+    }
+    
+    return [self.webView request];
 }
 
 - (void)guardTimerExceeded:(NSTimer*)timer {

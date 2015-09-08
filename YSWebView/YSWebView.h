@@ -89,4 +89,16 @@ typedef void(^JavaScriptCompletionBlock)(NSString *result, NSError *error);
  */
 - (void)stopLoading;
 
+
+- (void)reload;
+
+- (void)goBack;
+- (void)goForward;
+
+@property (nonatomic, readonly) NSString* pageTitle;
+@property (nonatomic, readonly, getter=canGoBack) BOOL canGoBack;
+@property (nonatomic, readonly, getter=canGoForward) BOOL canGoForward;
+@property (nonatomic, readonly, getter=isLoading) BOOL loading;
+@property (nonatomic, readonly, retain) NSURLRequest *request;
+
 @end
